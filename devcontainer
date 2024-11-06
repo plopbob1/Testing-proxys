@@ -1,0 +1,18 @@
+{
+    "name": "Python Web Server",
+    "image": "mcr.microsoft.com/devcontainers/python:3",
+    "forwardPorts": [8080, 8443],
+    "postCreateCommand": "pip install -r requirements.txt && openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 -subj '/CN=localhost'",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ]
+        }
+    },
+    "remoteEnv": {
+        "CERT_PATH": "${containerWorkspaceFolder}/cert.pem",
+        "KEY_PATH": "${containerWorkspaceFolder}/key.pem"
+    }
+}
